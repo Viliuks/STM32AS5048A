@@ -13,9 +13,6 @@ SPI_HandleTypeDef *spiDef;
 uint16_t TX[4] = { 0 };
 uint16_t RX[4] = { 0 };
 uint16_t post_process_value;
-float old_angle;
-float angle_prev;
-long velocity_calc_timestamp;
 
 void AS5048A_Init(SPI_HandleTypeDef *handle) {
 	spiDef = handle;
@@ -25,8 +22,7 @@ void AS5048A_Init(SPI_HandleTypeDef *handle) {
  * Gets the current angle in radians
  */
 float AS5048A_GetAngle() {
-	old_angle = ((float) AS5048A_GetRaw()) / (float) AS5048A_CPR * 2.0f * PI;
-	return old_angle;
+	return ((float) AS5048A_GetRaw()) / (float) AS5048A_CPR * 2.0f * PI;
 }
 
 /**
